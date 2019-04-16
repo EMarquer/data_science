@@ -13,9 +13,12 @@ This README can be found at [https://github.com/EMarquer/data_science](https://g
     - [External dependencies](#external-dependencies)
         - [Spacy models and available languages](#spacy-models-and-available-languages)
 - [Usage](#usage)
+    - [Description of the effect of each exercise file](#description-of-the-effect-of-each-exercise-file)
+        - [`exercise_1.py`](#exercise_1py)
+        - [`exercise_2.py`](#exercise_2py)
+        - [`exercise_3.py`](#exercise_3py)
+    - [Constants](#constants)
 - [Files](#files)
-- [](#)
-- [](#)
 
 ## Description
 This project was done for the UE803: Data Science of the NLP Master Program of Nancy.
@@ -162,3 +165,18 @@ Note that the constants from an exercise may be used in a later exercise.
 |SPARQ_MOVEMENTS| `exercise_2.py` | SPARQL query to get all literary movements (`dbc:Literary_movements`) from an URI. |
 |SPARQ_ABSTRACTS| `exercise_2.py` | SPARQL query to get all abstracts from an URI. |
 |DB_PATH| `exercise_3.py` | Name of the SQL database file. |
+
+## Files
+Here is a list of files and a brief description for each of them:
+- `data\*.txt`: `*` being the Gutenberg identifier of a book, file containg the sentences from the book;
+- `data\book_catalogue.csv`: CSV catalogue of books used, containing:
+    - the name of the author of the book in Gutenberg;
+    - the title;
+    - the URI/ebook ID in Gutenberg;
+    - the path to the file where the extracted sentences are stored;
+- `data\book_catalogue.db`: SQL database containing information about the books and the authors (see [sql_graph.png](sql_graph.png) for the structure of the database);
+- `exercise_1.py`: file containing the functions used to solve the exercise 1
+- `exercise_2.py`: file containing the functions used to solve the exercise 2
+- `exercise_3.py`: file containing the functions used to solve the exercise 3
+- `README.md`: this file, containing various informations about the project and its files;
+- `sql_graph.png`: the structure of the database.
