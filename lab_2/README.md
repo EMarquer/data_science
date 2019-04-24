@@ -6,63 +6,29 @@ This README can be found at [https://github.com/EMarquer/data_science](https://g
 ## In this README
 - [In this README](#in-this-readme)
 - [Description](#description)
-    - [Exercise 1](#exercise-1)
-        - [Author selection criterion](#author-selection-criterion)
 - [Setup](#setup)
     - [Built-in Python dependencies](#built-in-python-dependencies)
     - [External dependencies](#external-dependencies)
         - [Spacy models and available languages](#spacy-models-and-available-languages)
 - [Usage](#usage)
     - [Description of the effect of each exercise file](#description-of-the-effect-of-each-exercise-file)
-        - [`exercise_1.py`](#exercise_1py)
-        - [`exercise_2.py`](#exercise_2py)
-        - [`exercise_3.py`](#exercise_3py)
     - [Constants](#constants)
 - [Files](#files)
 
 ## Description
 This project was done for the UE803: Data Science of the NLP Master Program of Nancy.
-It corresponds to the first of three lab sessions of the evaluation of the UE.
+It corresponds to the second of three lab sessions of the evaluation of the UE.
 
-The Lab session is split in three exercises around the extraction of information from the [Gutenberg project](http://www.gutenberg.org/) and the [DBpedia](https://wiki.bdpedia.org/) database.
+// structure of the lab
 
 The code of each exercise is stored in a different file (see [Files](#files)).
 
 ### Exercise 1
-The first exercise correspond to the extraction of a list of authors and a set of sentences from the books of said authors.
+The first exercise correspond to // topic of the exercise
 
-A distribution of `k` authors are selected from the the [Gutenberg project](http://www.gutenberg.org/) author search, according to the first letter of their family name. The distribution of authors among the letters is random.
-For each letter, the first authors fulfilling the [author selection criterion](#author-selection-criterion) are selected.
+// What the exercise does
 
-Once the authors and the corresponding books are selected, `n` sentences are chosen per author among the books. The distribution of the sentences among the books of an author is either random (the default behaviour) or balanced (about the same number of sentence per book). The senteces are chosen randomly in each book among the sentences parsed by the Scipy language model.
-
-The selected sentences are stored in TXT files named after the Gutenberg identifier of the book they come from, one sentence per line.
-An extra CSV file contains the catalogue of books used, the file where the extracted sentences are stored and the name of the author of the book.
-
-#### Author selection criterion
-To be sellected, an author must have at least a certain number of books fullfilling the following conditions:
-- the author must be the author of the book;
-- the book must not have been chosen for another author (to avoid book duplicates);
-- the book must be written in a certain language;
-- the book UTF-8 txt transcription must be available without error at an expected URL (structured like `http://www.gutenberg.org/ebooks/<book_ID>.txt.utf-8`).
-
-### Exercise 2
-The second exercise correspond to the extraction of information about the authors from either Wikipedia or [DBpedia](https://wiki.bdpedia.org/). We choose the later. 
-
-The exercise can be decomposed into three steps:
-1. parsing the name of the author given in the [Gutenberg project](http://www.gutenberg.org/) and finding the corresponding name in [DBpedia](https://wiki.bdpedia.org/);
-2. geting the URI of the author;
-3. extracting the abstract (in multiple languages) and the literary movement of the author.
-
-This is done using the SPARQL [DBpedia](https://wiki.bdpedia.org/) endpoint.
-
-One can note that it is very rare that the literary movement of minor authors is documented in [DBpedia](https://wiki.bdpedia.org/).
-
-### Exercise 3
-The third and last exercise correspond to the agregation of the data extracted using the [exercise 2](#exercise-2) and the book catalogue from the [exercise 1](#exercise-1) into a database.
-
-Here is the structure of the SQL database produced (here the `ebooks/<book_ID>` form the [Gutenberg project](http://www.gutenberg.org/) is used as a book URI):  
-![sql_graph.png](sql_graph.png)
+// Output
 
 ## Setup
 To use the project, you will need a valid `Python 3.7.1` installation as well as the external libraries described in [External dependencies](#external-dependencies) (check that you have the correct versions!). You will also need to download the correct Spacy language model (see [Spacy models and available languages](#spacy-models-and-available-languages)).

@@ -1,0 +1,1 @@
+from .exercise_3 import load_database
