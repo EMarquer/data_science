@@ -177,8 +177,9 @@ Here is a list of files and a brief description for each of them:
     - the URI/ebook ID in Gutenberg;
     - the path to the file where the extracted sentences are stored;
 - `data\book_catalogue.db`: SQL database containing information about the books and the authors (see [sql_graph.png](sql_graph.png) for the structure of the database);
-- `exercise_1.py`: file containing the functions used to solve the exercise 1
-- `exercise_2.py`: file containing the functions used to solve the exercise 2
-- `exercise_3.py`: file containing the functions used to solve the exercise 3
+- `data_management.py`: file containing a few function to load the data produce by exercise 1 and 3;
+- `exercise_1.py`: file containing the functions used to solve the exercise 1;
+- `exercise_2.py`: file containing the functions used to solve the exercise 2;
+- `exercise_3.py`: file containing the functions used to solve the exercise 3;
 - `README.md`: this file, containing various informations about the project and its files;
 - `sql_graph.png`: the structure of the database.

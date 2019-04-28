@@ -7,9 +7,14 @@ from sqlalchemy import create_engine, func
 Base = declarative_base() 
 
 import pandas as pd
+import os
 
-from exercise_1 import CSV_FILE_PATH, SAVE_PATH, os
-from exercise_2 import exercise_2
+if __name__=="__main__":
+    from exercise_1 import CSV_FILE_PATH, SAVE_PATH
+    from exercise_2 import exercise_2
+else:
+    from .exercise_1 import CSV_FILE_PATH, SAVE_PATH
+    from .exercise_2 import exercise_2
 
 # --- constants ---
 VERBOSE=False
@@ -131,7 +136,7 @@ def apply_exercise_2(authors, session, verbose=VERBOSE):
 
 # --- main ---
 if __name__ == "__main__":
-    mode = 'test' #'populate'
+    mode = 'populate' #'test'
 
     if mode == 'populate':
         # Create an engine that stores data in the local 
@@ -156,7 +161,7 @@ if __name__ == "__main__":
         session = sessionmaker(bind=engine)()
 
         # Example query 1
-        author='Zangwill, Israel, 1864-1926'
+        author='Dahn, Felix, 1834-1912'
         print("Retrieve all book title for a given author ({})".format(author))
         for book, in session.query(Book.title).join(Author).filter_by(name=author):
             print(book)

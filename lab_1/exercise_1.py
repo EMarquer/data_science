@@ -18,8 +18,8 @@ import pandas as pd
 
 # --- constants ---
 # program default parameters
-AUTHOR_NUMBER = 10  # k
-SENTENCE_PER_AUTHOR = 50  # n
+AUTHOR_NUMBER = 5  # k
+SENTENCE_PER_AUTHOR = 200  # n
 
 # book selection criterion
 LANGUAGE_ROLE_REGEX = re.compile(r'\((\w+)\) \(as (\w+)\)')
