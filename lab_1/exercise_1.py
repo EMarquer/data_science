@@ -16,6 +16,8 @@ import os
 
 import pandas as pd
 
+VERBOSE = False
+
 # --- constants ---
 # program default parameters
 AUTHOR_NUMBER = 5  # k
@@ -48,8 +50,6 @@ GUTEMBERG_LETTER_URL = 'http://www.gutenberg.org/browse/authors/{}'
 
 # url for book download
 GUTEMBERG_LETTER_UTF = "http://www.gutenberg.org{}.txt.utf-8"
-
-VERBOSE = False
 
 LETTERS = 'abcdefghijklmnopqrstuvwxyz'
 
@@ -315,4 +315,4 @@ def exercice_1(author_number=AUTHOR_NUMBER,
         
 # --- main ---
 if __name__ == "__main__":
-    print(exercice_1(verbose=True))
+    print(exercice_1())

@@ -126,11 +126,8 @@ The selected sentences are stored in TXT files named after the Gutenberg identif
 
 An extra CSV file ([data/book_catalogue.csv](data/book_catalogue.csv)) contains the catalogue of books used (title and URI/ebook ID), the file where the extracted sentences are stored and the name of the author of the book.
 
-Notes:
-- the program is executed by default with verbose, whatever the value of VERBOSE is;
-- internet connection is required for the program to work.
-
 **Warning**:
+- internet connection is required for the program to work;
 - running this program will overwrite the previously extracted corpus.
 
 #### `exercise_2.py`
@@ -150,23 +147,24 @@ It produces a SQL database ([data/book_catalogue.db](data/book_catalogue.db)) an
 The constants are stored at the begining of each exercise file. You can change the value of all the constants listed below to adapt the program.
 Note that the constants from an exercise may be used in a later exercise.
 
-| Constant | Exercise file | Effect |
+| Constant | Exercise file | Line | Effect |
 |-|-|-|
-|VERBOSE| `exercise_1.py` | If `True`, will make the program describe what is going on during execution. |
-|VERBOSE| `exercise_2.py` | If `True`, will make the program describe what is going on during execution. |
-|VERBOSE| `exercise_3.py` | If `True`, will make the program describe what is going on during execution. |
-|AUTHOR_NUMBER| `exercise_1.py` | Noted `k` in the instruction sheet. The number of authors to extract from the [Gutenberg project](http://www.gutenberg.org/). |
-|SENTENCE_PER_AUTHOR| `exercise_1.py` | Noted `n` in the instruction sheet. The number of sentence to extract per author. |
-|ROLE| `exercise_1.py` | Role of the individual in the book (author, translator, ...). |
-|LANGUAGE| `exercise_1.py` | Language of the book. Must be a language present in the table in [Spacy models and available languages](#spacy-models-and-available-languages). |
-|BOOK_THRESHOLD| `exercise_1.py` | Minimal number of valid books to accept an author. |
-|SAVE_PATH| `exercise_1.py` | Name of the folder in which the TXT and CSV files will be stored |
-|CSV_FILE_PATH| `exercise_1.py` | Name of the CSV catalogue file. |
-|CSV_HEADERS| `exercise_1.py` | Name of the columns in the CSV file. |
-|SPARQ_AUTHOR_NAME| `exercise_2.py` | SPARQL query to get an author URI from their name. |
-|SPARQ_MOVEMENTS| `exercise_2.py` | SPARQL query to get all literary movements (`dbc:Literary_movements`) from an URI. |
-|SPARQ_ABSTRACTS| `exercise_2.py` | SPARQL query to get all abstracts from an URI. |
-|DB_PATH| `exercise_3.py` | Name of the SQL database file. |
+|VERBOSE| `exercise_1.py` | 19 | If `True`, will make the program describe what is going on during execution. |
+|VERBOSE| `exercise_2.py` | 10 | If `True`, will make the program describe what is going on during execution. |
+|VERBOSE| `exercise_3.py` | 20 | If `True`, will make the program describe what is going on during execution. |
+|AUTHOR_NUMBER| `exercise_1.py` | 23 | Noted `k` in the instruction sheet. The number of authors to extract from the [Gutenberg project](http://www.gutenberg.org/). |
+|SENTENCE_PER_AUTHOR| `exercise_1.py` | 24 | Noted `n` in the instruction sheet. The number of sentence to extract per author. |
+|ROLE| `exercise_1.py` | 30 | Role of the individual in the book (author, translator, ...). |
+|LANGUAGE| `exercise_1.py` | 42 | Language of the book. Must be a language present in the table in [Spacy models and available languages](#spacy-models-and-available-languages). |
+|BOOK_THRESHOLD| `exercise_1.py` | 46 | Minimal number of valid books to accept an author. |
+|SAVE_PATH| `exercise_1.py` | 57 | Name of the folder in which the TXT and CSV files will be stored |
+|CSV_FILE_PATH| `exercise_1.py` | 62 | Name of the CSV catalogue file. |
+|CSV_HEADERS| `exercise_1.py` | 63 | Name of the columns in the CSV file. |
+|SPARQ_AUTHOR_NAME| `exercise_2.py` | 13 | SPARQL query to get an author URI from their name. |
+|SPARQ_MOVEMENTS| `exercise_2.py` | 23 | SPARQL query to get all literary movements (`dbc:Literary_movements`) from an URI. |
+|SPARQ_ABSTRACTS| `exercise_2.py` | 36 | SPARQL query to get all abstracts from an URI. |
+|DB_PATH| `exercise_3.py` | 21 | Name of the SQL database file. |
+|MODE| `exercise_3.py` | 24 | Script mode, in `populate` mode will populate the database, in `test` mode will test a few qyeries. |
 
 ## Files
 Here is a list of files and a brief description for each of them:

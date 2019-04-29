@@ -20,6 +20,9 @@ else:
 VERBOSE=False
 DB_PATH = os.path.join(SAVE_PATH, "book_catalogue.db")
 
+# script mode, in "populate" mode will populate the database, in "test" mode will test a few qyeries
+MODE = 'populate' #'test'
+
 # --- alchemy ---
 # setup SQL database
 
@@ -112,31 +115,37 @@ def apply_exercise_2(authors, session, verbose=VERBOSE):
             session.add(movements[movement_uri])
         return movements[movement_uri]
     
+    # go through all the provided authors and populate the corresponding information
     for author_name, author_object in authors.items():
+        # get information from DBpedia, using the exercise 2
         author_uri, abstracts, movements = exercise_2(author_name, verbose=verbose)
     
+        # if the author was found on DBpedia, populate the corresponding information
         if author_uri:
+            # URI
             author_object.uri = author_uri
             
+            # Abstracts
             author_object.abstracts = [
                 Abstract(lang = lang,
                          abstract = abstract)
                 for lang, abstract in abstracts.items()
             ]
             
+            # Literary movement itself
             author_movements = [get_movement(movement_uri, movement_name)
                                 for movement_uri, movement_name in movements.items()]
             
+            # link the movement and the author with the mapping
             author_object.movement_mappings = [
                 AuthorMovementMapping(movement=movement)
                 for movement in author_movements
             ]
             
 
-
 # --- main ---
 if __name__ == "__main__":
-    mode = 'populate' #'test'
+    mode = MODE
 
     if mode == 'populate':
         # Create an engine that stores data in the local 
@@ -160,12 +169,16 @@ if __name__ == "__main__":
         engine = create_engine('sqlite:///' + DB_PATH)
         session = sessionmaker(bind=engine)()
 
-        # Example query 1
-        author='Dahn, Felix, 1834-1912'
-        print("Retrieve all book title for a given author ({})".format(author))
-        for book, in session.query(Book.title).join(Author).filter_by(name=author):
-            print(book)
+        # Example query 1.1 (can fail if the author is not updated to an author present in the DB)
+        try:
+            author='Dahn, Felix, 1834-1912'
+            print("Retrieve all book title for a given author ({})".format(author))
+            for book, in session.query(Book.title).join(Author).filter_by(name=author):
+                print(book)
+        except Exception as e:
+            print(e)
 
+        # Example query 1.2
         print("Retrieve all book title for all authors")
         for author, book, in session.query(Author.name, Book.title).join(Book):
             print(author, ':', book)

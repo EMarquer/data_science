@@ -7,6 +7,8 @@ sparql.query()
 sparql.addDefaultGraph("http://dbpedia.org")
 
 # --- constants ---
+VERBOSE=False
+
 # ontology
 SPARQ_AUTHOR_NAME = """
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -41,8 +43,6 @@ SPARQ_ABSTRACTS = """
     }}
     LIMIT 100
 """
-
-VERBOSE=False
 
 # --- code ---
 def get_uri_from_name(author_name, verbose=VERBOSE):
