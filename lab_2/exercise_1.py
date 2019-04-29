@@ -5,7 +5,7 @@ import string
 from nltk.parse.stanford import StanfordParser
 from nltk.parse.corenlp import CoreNLPParser, CoreNLPServer
 
-# - language
+# language
 SCIPY_LANGUAGES = {
     'German': 'de',
     'Greek': 'el',
@@ -45,12 +45,12 @@ TASK_FILES = {
 # standford parser options
 JAVA_PATH = os.path.join("C:\\","Program Files","Java","jdk-11.0.2")#,"bin","java.exe")  # set to False or None to use the default Java path
 JAVA_OPTIONS = '-mx6g'
-CORENLP_MODE = False  # if True, will use a CoreNLP server for the parser; necessary if file contains \ or /; was buggy for me
+CORENLP_MODE = False  # if True, will use a CoreNLP server for the parser, instead of Stanford Parser; caused port bugs for me
 PATH_TO_STANFORD = "stanford-corenlp-full-2018-10-05" if CORENLP_MODE else "stanford-parser-full-2018-10-17"
 PATH_TO_JAR = os.path.join(PATH_TO_STANFORD, "stanford-corenlp-3.9.2.jar" if CORENLP_MODE else "stanford-parser.jar")
 PATH_TO_MODELS_JAR = os.path.join(PATH_TO_STANFORD, "stanford-corenlp-3.9.2-models.jar" if CORENLP_MODE else "stanford-parser-3.9.2-models.jar")
 
-
+# -- parser singletons --
 # standford parser singleton
 STANDFORD = dict()
 def get_standford(corenlp_mode=CORENLP_MODE):
@@ -76,12 +76,12 @@ def get_standford(corenlp_mode=CORENLP_MODE):
 
 # scipy parser singleton
 PARSERS = dict()
-
 def get_parser(language=LANGUAGE):
     # load the sentence parser for the target language
     if language not in PARSERS.keys():
         PARSERS[language] = spacy.load(SCIPY_LANGUAGES[language])
     return PARSERS[language]
+
 
 def parse(text, language=LANGUAGE):
     return get_parser(language)(text)

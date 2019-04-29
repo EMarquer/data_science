@@ -5,7 +5,9 @@ from pprint import pprint
 from collections import Counter
 import matplotlib.pyplot as plt
 import seaborn as sns
+import seaborn as sns
 from wordcloud import WordCloud, STOPWORDS 
+from numpy import mean
 
 try:
     from .exercise_1 import load_json, TASK_FILENAME_SCHEME, TASK_FILES, TASK_NER, TASK_POS, TASK_SENTENCE, TASK_SYNTAX, TASK_TOKENIZE
@@ -38,7 +40,7 @@ DATAFRAME_NP_COUNT = "NP count"
 DATAFRAME_VP_COUNT = "VP count"
 DATAFRAME_TOKEN_COUNT = "Token count"
 
-# mapping to reduce the  named entity categories from scipy to person, place and date
+# mapping to reduce the named entity categories from scipy to person, place and date
 NE_CATEGORIES = {
     'PERSON': "person",
     'LOC': "place",
@@ -61,6 +63,11 @@ SHOW = False  # if True will open the plots windows
 SAVE_PATH = 'imgs'
 if not os.path.isdir(SAVE_PATH):
     os.mkdir(SAVE_PATH)
+
+# plot save files
+VOC_PLOT_FILE = "voc_size.png"
+SENT_PLOT_FILE = "box.png"
+POS_PLOT_FILE = "pos.png"
 
 def get_np_count(sent_syntax: str):
     # count all the NPs from a syntactic parsing tree
@@ -171,22 +178,35 @@ def plot_voc_size_per_author(voc_size, to_file=TO_FILE, show=SHOW):
     # plot the data
     #sns.barplot(x="Author", hue="Author", dodge=False, y="Vocabulary Size", data = DataFrame(voc_plot_data), ax=ax)
     sns.catplot(x="", hue="Author", y="Vocabulary Size", data=voc_plot_data, kind='bar')
-    if to_file: plt.savefig(os.path.join(SAVE_PATH, "voc_size"))
+    if to_file: plt.savefig(os.path.join(SAVE_PATH, VOC_PLOT_FILE))
     if show: plt.show()
 
 def plot_sent_size_per_author(df, to_file=TO_FILE, show=SHOW):
     """box plot sent size per author"""
 
     # aggregate the data to a DataFrame
-    box_plot_df = df[[DATAFRAME_TOKEN_COUNT,DATAFRAME_AUTHOR]]
-    box_plot_df.insert(1, '', 0)  # add column "" full of 0 as a dummy value
+    box_plot_data = []
+    df_grouped = df.groupby(DATAFRAME_AUTHOR)[DATAFRAME_TOKEN_COUNT].apply(lambda x: x.tolist())
+    for token_counts, author in zip(df_grouped.values, df_grouped.index):
+        box_plot_data.append({
+            "Statistic": "Mean token count",
+            "Value": mean(token_counts),
+            DATAFRAME_AUTHOR: author})
+        box_plot_data.append({
+            "Statistic": "Min token count",
+            "Value": min(token_counts),
+            DATAFRAME_AUTHOR: author})
+        box_plot_data.append({
+            "Statistic": "Max token count",
+            "Value": max(token_counts),
+            DATAFRAME_AUTHOR: author})
+    box_plot_df = DataFrame(box_plot_data)
 
     # plot the data
-    sns.catplot(x="", y=DATAFRAME_TOKEN_COUNT,
-        hue=DATAFRAME_AUTHOR,
+    g = sns.catplot(x="Statistic", y="Value",
         data=box_plot_df,
         kind="box")
-    if TO_FILE: plt.savefig(os.path.join(SAVE_PATH, "box"))
+    if TO_FILE: plt.savefig(os.path.join(SAVE_PATH, SENT_PLOT_FILE))
     if SHOW: plt.show()
 
 def plot_pos_per_author(pos, to_file=TO_FILE, show=SHOW):
@@ -202,7 +222,7 @@ def plot_pos_per_author(pos, to_file=TO_FILE, show=SHOW):
     # plot the data
     sns.catplot(x="POS", y="Count", hue="Author", data = pos_plot_data,kind='bar',
                        legend_out=True, height=5, aspect=2)
-    if TO_FILE: plt.savefig(os.path.join(SAVE_PATH, "pos"))
+    if TO_FILE: plt.savefig(os.path.join(SAVE_PATH, POS_PLOT_FILE))
     if SHOW: plt.show()
 
 def plot_word_clouds(voc, to_file=TO_FILE, show=SHOW):
