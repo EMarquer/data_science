@@ -17,6 +17,7 @@ CLF_PARA_DICT = {
                     'fit_prior': [True, False]} , 
     LogisticRegression: {'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000]}}
 
+# optimisation scores
 SCORES = ['precision_macro', 'recall_macro']
 
 # number of cross-validataion
@@ -126,6 +127,7 @@ if __name__ == "__main__":
 
     FILE_PREFIX_FEATURES["All"] = "all"
 
+    # plotting the performance of all the features
     import seaborn as sns, matplotlib.pyplot as plt
     from pandas import DataFrame
     df = DataFrame(performance)
@@ -133,17 +135,13 @@ if __name__ == "__main__":
     df = df.loc[df['rating_score'] != 'support']  # remove all support lines
 
     for feature in df['feature'].unique():
-        
-        for clasifier_and_optim_score in df['clasifier_and_optim_score'].unique():
-            clasifier, optim_score = clasifier_and_optim_score.split(', ')
-            print("Plotting for:\n- Feature '{}'\n- Classifier '{}'\n- Optimisation score '{}'".format(feature, clasifier, optim_score))
-            sns.catplot(
-                x='class_or_overall',
-                y='performance',
-                hue='rating_score',
-                data=df.loc[df['feature'] == feature].loc[df['clasifier_and_optim_score'] == clasifier_and_optim_score],
-                kind='bar',
-                aspect=3)
-            plt.title("Feature '{}'\nClassifier '{}', Optimisation score '{}'".format(feature, clasifier, optim_score))
-            plt.tight_layout()
-            plt.savefig(os.path.join(SAVE_PATH, '.'.join([FILE_PREFIX_FEATURES[feature], clasifier.lower(), optim_score.lower(), "png"])))
+        print("Plotting for feature '{}'".format(feature))
+        sns.catplot(
+            x='class_or_overall',
+            y='performance',
+            row='rating_score',
+            hue='clasifier_and_optim_score',
+            data=df.loc[df['feature'] == feature],
+            kind='bar',
+            aspect=4, height=2)
+        plt.savefig(os.path.join(SAVE_PATH, FILE_PREFIX_FEATURES[feature]))#'.'.join([FILE_PREFIX_FEATURES[feature], clasifier.lower(), optim_score.lower(), "png"])))

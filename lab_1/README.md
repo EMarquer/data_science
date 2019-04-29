@@ -26,7 +26,7 @@ This README can be found at [https://github.com/EMarquer/data_science](https://g
 This project was done for the UE803: Data Science of the NLP Master Program of Nancy.
 It corresponds to the first of three lab sessions of the evaluation of the UE.
 
-The Lab session is split in three exercises around the extraction of information from the [Gutenberg project](http://www.gutenberg.org/) and the [DBpedia](https://wiki.bdpedia.org/) database.
+The lab session is split in three exercises around the extraction of information from the [Gutenberg project](http://www.gutenberg.org/) and the [DBpedia](https://wiki.bdpedia.org/) database.
 
 The code of each exercise is stored in a different file (see [Files](#files)).
 
@@ -148,7 +148,7 @@ The constants are stored at the begining of each exercise file. You can change t
 Note that the constants from an exercise may be used in a later exercise.
 
 | Constant | Exercise file | Line | Effect |
-|-|-|-|
+|-|-|-|-|
 |VERBOSE| `exercise_1.py` | 19 | If `True`, will make the program describe what is going on during execution. |
 |VERBOSE| `exercise_2.py` | 10 | If `True`, will make the program describe what is going on during execution. |
 |VERBOSE| `exercise_3.py` | 20 | If `True`, will make the program describe what is going on during execution. |

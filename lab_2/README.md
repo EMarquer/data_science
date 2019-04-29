@@ -6,12 +6,20 @@ This README can be found at [https://github.com/EMarquer/data_science](https://g
 ## In this README
 - [In this README](#in-this-readme)
 - [Description](#description)
+    - [Exercise 1](#exercise-1)
+    - [Exercise 2](#exercise-2)
+    - [Exercise 3](#exercise-3)
 - [Setup](#setup)
     - [Built-in Python dependencies](#built-in-python-dependencies)
     - [External dependencies](#external-dependencies)
         - [Spacy models and available languages](#spacy-models-and-available-languages)
+    - [Stanford Parser or Stanford CoreNLP](#stanford-parser-or-stanford-corenlp)
+        - [If you already have Stanford Parser or Stanford CoreNLP](#if-you-already-have-stanford-parser-or-stanford-corenlp)
+        - [If you don't have Stanford Parser or Stanford CoreNLP](#if-you-don't-have-stanford-parser-or-stanford-corenlp)
 - [Usage](#usage)
     - [Description of the effect of each exercise file](#description-of-the-effect-of-each-exercise-file)
+        - [`exercise_1.py`](#exercise_1py)
+        - [`exercise_2_3.py`](#exercise_2_3py)
     - [Constants](#constants)
 - [Files](#files)
 
@@ -19,7 +27,7 @@ This README can be found at [https://github.com/EMarquer/data_science](https://g
 This project was done for the UE803: Data Science of the NLP Master Program of Nancy.
 It corresponds to the second of three lab sessions of the evaluation of the UE.
 
-The Lab session is split in three exercises around the processing of text data, descriptive statisics and visualization database.
+The lab session is split in three exercises around the processing of text data, descriptive statisics and visualization.
 
 The code of exercise 1 is separate form the code of exercise 2 and 3 (see [Files](#files)).
 
@@ -55,7 +63,7 @@ The bar plots and box plot are stored each in a file named after what they repre
 The word clouds are stored in numbered files, with the author name written at the image.
 
 ## Setup
-To use the project, you will need a valid `Python 3.7.1` installation as well as the external libraries described in [External dependencies](#external-dependencies) (check that you have the correct versions!) and a working Stanford syntactic parser (see [Stanford Parser or Stanford CoreNLP](#stanford-parser-or-stanford-corenlp)). You will also need to download the correct Spacy language model (see [Spacy models and available languages](#spacy-models-and-available-languages)).
+To use the project, you will need a valid `Python 3.7.1` installation as well as the external libraries described in [External dependencies](#external-dependencies) (check that you have the correct versions!) and a working Stanford syntactic parser (see [Stanford Parser or Stanford CoreNLP](#stanford-parser-or-stanford-corenlp)). You will also need to download the correct Spacy language model (see [Spacy models and available languages](#spacy-models-and-available-languages)). Also, the files and scripts from `lab_1` are required.
 
 ### Built-in Python dependencies
 The project relies on the following `Python 3.7.1` built-in libraries:
@@ -64,6 +72,8 @@ The project relies on the following `Python 3.7.1` built-in libraries:
 | json          |
 | string        |
 | os            |
+| sys           |
+| inspect       |
 | re            |
 | collections   |
 | pprint        |
@@ -117,9 +127,9 @@ Finally, update the constants in `exercise_1.py` (see [Constants](#constants) fo
 - `CORENLP_MODE`: check that it is still set to `False`.
 
 ## Usage 
-To use the project, you will need the three exercise files from the `lab_2` folder in [repository](https://github.com/EMarquer/data_science), as well as the exercises and data from `lab_1`.
+To use the project, you will need the two exercise files from the `lab_2` folder in [repository](https://github.com/EMarquer/data_science), as well as the exercises and data from `lab_1`.
 
-Each of those files is runable using `python exercise_#.py` (where `#` is the number of the exercise you want to execute).
+Each of the exercise files is runable using `python exercise_#.py` (where `#` is the number of the exercise you want to execute).
 
 Also, you can addapt the effects of the project by changing the value of some of the constants listed in [Constants](#constants).
 
@@ -187,8 +197,6 @@ Note that the constants from an exercise may be used in a later exercise.
 |PATH_TO_STANFORD| `exercise_1.py` | 49 | Path to the *folder* of the Stanford tool of your choice. |
 |PATH_TO_JAR| `exercise_1.py` | 50 | Path to the *JAR file* of the main class of the Stanford tool of your choice. |
 |PATH_TO_MODELS_JAR| `exercise_1.py` | 51 | Path to the *JAR file* of the models of the Stanford tool of your choice. |
-
-
 |JSON_PATH| `exercise_2_3.py` | 26 | Name of the folder of the JSON files from `axercise_1.py`. |
 |DATABASE_PATH| `exercise_2_3.py` | 29 | Name of the SQL database file, relative to the current directory (`lab_2`). |
 |DATAFRAME_*| `exercise_2_3.py` | 33 | Name of the columns in the DataFrame. |

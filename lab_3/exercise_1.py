@@ -30,7 +30,7 @@ SENTENCES_PER_INSTANCE = 2
 # Accepted POS for POS-filtered tokens
 ACCEPTED_POS = {'ADJ', 'ADV', 'VERB', 'ADV'}
 
-# proportion of the ddata to use as training set, the rest is used fro the test set
+# proportion of the data to use as training set, the rest is used for the test set
 TRAIN_RATIO = .8
 
 # data used to compute features
