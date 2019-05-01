@@ -1,1 +1,1 @@
-jupyter nbconvert --to slides index.ipynb --reveal-prefix=reveal.js --SlidesExporter.reveal_theme=serif --SlidesExporter.reveal_scroll=True --SlidesExporter.reveal_transition=none --NbConvertApp.use_output_suffix=False
+jupyter nbconvert --to slides index.ipynb #--reveal-prefix=reveal.js https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/
