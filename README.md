@@ -5,6 +5,8 @@ This repository contains the code and the data for all the lab sessions of the e
 
 This README can be found at [https://github.com/EMarquer/data_science](https://github.com/EMarquer/data_science).
 
+The slides for the defense can be found at [https://emarquer.github.io/data_science/index.slides.html#/](https://emarquer.github.io/data_science/index.slides.html#/).
+
 ## File and folders
 Here is a list of folders and a brief description for each of them:
 - `lab_1`: the first lab, about extracting and storing text and RDF data;
