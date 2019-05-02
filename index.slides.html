@@ -13251,25 +13251,1022 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Outline">Outline<a class="anchor-link" href="#Outline">&#182;</a></h2><ol>
-<li>Lab 1<ol>
+<h1 id="Outline">Outline<a class="anchor-link" href="#Outline">&#182;</a></h1><ol>
+<li><strong>Lab 1</strong><ol>
 <li>Parts covered and choices</li>
 <li>Results</li>
 </ol>
 </li>
-<li>Lab 2<ol>
+<li><strong>Lab 2</strong><ol>
 <li>Parts covered and choices</li>
 <li>Results</li>
 </ol>
 </li>
-<li>Lab 3<ol>
+<li><strong>Lab 3</strong><ol>
 <li>Parts covered and choices</li>
 <li>Results</li>
 </ol>
 </li>
-<li>Interesting code fragment</li>
+<li><strong>Interesting code fragment</strong></li>
 </ol>
 
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lab-1">Lab 1<a class="anchor-link" href="#Lab-1">&#182;</a></h1><h2 id="Parts-covered-and-choices">Parts covered and choices<a class="anchor-link" href="#Parts-covered-and-choices">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-1">Exercise 1<a class="anchor-link" href="#Exercise-1">&#182;</a></h1><h2 id="Author-selection-criterion">Author selection criterion<a class="anchor-link" href="#Author-selection-criterion">&#182;</a></h2><p>To be selected, an author must have at least a certain number of books fulfilling the following conditions:</p>
+<ul>
+<li>the author must be the <strong>Author</strong> of the book;</li>
+<li>the book must not have been chosen for another author (to <strong>avoid book duplicates</strong>);</li>
+<li>the book must be written in a certain language;</li>
+<li>the book <strong>UTF-8 txt</strong> transcription must be available without error at an expected URL (structured like <code>http://www.gutenberg.org/ebooks/&lt;book_ID&gt;.txt.utf-8</code>). </li>
+</ul>
+<p>The selected sentences are stored in TXT files named after the unique Gutenberg identifier of each book, one sentence per line.</p>
+<p>An extra CSV file contains the catalogue of books used, the file where the extracted sentences are stored and the name of the author of the book.</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-2">Exercise 2<a class="anchor-link" href="#Exercise-2">&#182;</a></h1><p>The exercise, searching for abstracts and literary movements, can be decomposed into three steps:</p>
+<ol>
+<li>parsing the name of the author given in the Gutenberg project and finding the corresponding name in DBpedia;<br>
+ three kind of names (in each case, can be followed by years):<ol>
+<li>family name, initials (given name)</li>
+<li>family name, given name</li>
+<li>full name</li>
+</ol>
+</li>
+<li>getting the URI of the author;</li>
+<li>extracting the abstract (in multiple languages) and the literary movement of the author.</li>
+</ol>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-3">Exercise 3<a class="anchor-link" href="#Exercise-3">&#182;</a></h1><p>This program creates a SQL database from the book catalogue (<code>data/book_catalogue.csv</code>) and additional information extracted using <code>exercise_2.py</code>.</p>
+<p>Here the <code>ebooks/&lt;book_ID&gt;</code> from the Gutenberg project is used as a book URI.</p>
+<p><img src="lab_1/sql_graph.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lab-1">Lab 1<a class="anchor-link" href="#Lab-1">&#182;</a></h1><h2 id="Run-and-Results">Run and Results<a class="anchor-link" href="#Run-and-Results">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hyperparameters">Hyperparameters<a class="anchor-link" href="#Hyperparameters">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">AUTHOR_NUMBER</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># k</span>
+<span class="n">SENTENCE_PER_AUTHOR</span> <span class="o">=</span> <span class="mi">200</span>  <span class="c1"># n</span>
+<span class="n">BOOK_THRESHOLD</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;lab_1/data/book_catalogue.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>author</th>
+      <th>book_url</th>
+      <th>book_title</th>
+      <th>book_file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32220</td>
+      <td>A Captive of the Roman Eagles</td>
+      <td>data\32220.txt</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32222</td>
+      <td>Felicitas: A Tale of the German Migrations: A....</td>
+      <td>data\32222.txt</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32443</td>
+      <td>Saga of Halfred the Sigskald: A Northern Tale ...</td>
+      <td>data\32443.txt</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32461</td>
+      <td>The Scarlet Banner</td>
+      <td>data\32461.txt</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32271</td>
+      <td>A Struggle for Rome, v. 1</td>
+      <td>data\32271.txt</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32330</td>
+      <td>A Struggle for Rome, v. 2</td>
+      <td>data\32330.txt</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32377</td>
+      <td>A Struggle for Rome, v. 3</td>
+      <td>data\32377.txt</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/14029</td>
+      <td>Chateau and Country Life in France</td>
+      <td>data\14029.txt</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/37953</td>
+      <td>Italian Letters of a Diplomat's Wife: January-...</td>
+      <td>data\37953.txt</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/38825</td>
+      <td>Letters of a Diplomat's Wife, 1883-1900</td>
+      <td>data\38825.txt</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/10003</td>
+      <td>My First Years as a Frenchwoman, 1876-1879</td>
+      <td>data\10003.txt</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div><aside class="notes">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[:</span><span class="mi">11</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>author</th>
+      <th>book_url</th>
+      <th>book_title</th>
+      <th>book_file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32220</td>
+      <td>A Captive of the Roman Eagles</td>
+      <td>data\32220.txt</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32222</td>
+      <td>Felicitas: A Tale of the German Migrations: A....</td>
+      <td>data\32222.txt</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32443</td>
+      <td>Saga of Halfred the Sigskald: A Northern Tale ...</td>
+      <td>data\32443.txt</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32461</td>
+      <td>The Scarlet Banner</td>
+      <td>data\32461.txt</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32271</td>
+      <td>A Struggle for Rome, v. 1</td>
+      <td>data\32271.txt</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32330</td>
+      <td>A Struggle for Rome, v. 2</td>
+      <td>data\32330.txt</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>Dahn, Felix, 1834-1912</td>
+      <td>/ebooks/32377</td>
+      <td>A Struggle for Rome, v. 3</td>
+      <td>data\32377.txt</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/14029</td>
+      <td>Chateau and Country Life in France</td>
+      <td>data\14029.txt</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/37953</td>
+      <td>Italian Letters of a Diplomat's Wife: January-...</td>
+      <td>data\37953.txt</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/38825</td>
+      <td>Letters of a Diplomat's Wife, 1883-1900</td>
+      <td>data\38825.txt</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>10</td>
+      <td>Waddington, Mary King, 1833-1923</td>
+      <td>/ebooks/10003</td>
+      <td>My First Years as a Frenchwoman, 1876-1879</td>
+      <td>data\10003.txt</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</aside><aside class="notes">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">11</span><span class="p">:</span><span class="mi">22</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>author</th>
+      <th>book_url</th>
+      <th>book_title</th>
+      <th>book_file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>Tacitus, Cornelius, 56-117</td>
+      <td>/ebooks/37696</td>
+      <td>Arguments of Celsus, Porphyry, and the Emperor...</td>
+      <td>data\37696.txt</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>Tacitus, Cornelius, 56-117</td>
+      <td>/ebooks/9090</td>
+      <td>Germania and Agricola</td>
+      <td>data\9090.txt</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>13</td>
+      <td>Tacitus, Cornelius, 56-117</td>
+      <td>/ebooks/7524</td>
+      <td>The Germany and the Agricola of Tacitus</td>
+      <td>data\7524.txt</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>14</td>
+      <td>Tacitus, Cornelius, 56-117</td>
+      <td>/ebooks/7959</td>
+      <td>The Reign of Tiberius, Out of the First Six An...</td>
+      <td>data\7959.txt</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>15</td>
+      <td>Tacitus, Cornelius, 56-117</td>
+      <td>/ebooks/2995</td>
+      <td>Tacitus on Germany</td>
+      <td>data\2995.txt</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>16</td>
+      <td>Tacitus, Cornelius, 56-117</td>
+      <td>/ebooks/16927</td>
+      <td>Tacitus: The Histories, Volumes I and II</td>
+      <td>data\16927.txt</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>17</td>
+      <td>Gaebelein, Arno Clemens, 1861-1945</td>
+      <td>/ebooks/29557</td>
+      <td>The Lord of GloryMeditations on the person, th...</td>
+      <td>data\29557.txt</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>18</td>
+      <td>Gaebelein, Arno Clemens, 1861-1945</td>
+      <td>/ebooks/36857</td>
+      <td>The Prophet Ezekiel: An Analytical Exposition</td>
+      <td>data\36857.txt</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>19</td>
+      <td>Gaebelein, Arno Clemens, 1861-1945</td>
+      <td>/ebooks/31603</td>
+      <td>Studies in Prophecy</td>
+      <td>data\31603.txt</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>20</td>
+      <td>Gaebelein, Arno Clemens, 1861-1945</td>
+      <td>/ebooks/36216</td>
+      <td>Studies in Zechariah</td>
+      <td>data\36216.txt</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>21</td>
+      <td>Gaebelein, Arno Clemens, 1861-1945</td>
+      <td>/ebooks/26643</td>
+      <td>The Work Of Christ: Past, Present and Future</td>
+      <td>data\26643.txt</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</aside><aside class="notes">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="mi">22</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>author</th>
+      <th>book_url</th>
+      <th>book_title</th>
+      <th>book_file</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>22</th>
+      <td>22</td>
+      <td>Mabie, Hamilton Wright, 1846-1916</td>
+      <td>/ebooks/16736</td>
+      <td>Books and Culture</td>
+      <td>data\16736.txt</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>23</td>
+      <td>Mabie, Hamilton Wright, 1846-1916</td>
+      <td>/ebooks/6143</td>
+      <td>Essays on Work and Culture</td>
+      <td>data\6143.txt</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>24</td>
+      <td>Mabie, Hamilton Wright, 1846-1916</td>
+      <td>/ebooks/4265</td>
+      <td>Heroes Every Child Should Know</td>
+      <td>data\4265.txt</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>25</td>
+      <td>Mabie, Hamilton Wright, 1846-1916</td>
+      <td>/ebooks/6622</td>
+      <td>Legends That Every Child Should Know; a Select...</td>
+      <td>data\6622.txt</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>26</td>
+      <td>Mabie, Hamilton Wright, 1846-1916</td>
+      <td>/ebooks/44367</td>
+      <td>The Mentor: Walter Scott, Vol. 4, Num. 15, Ser...</td>
+      <td>data\44367.txt</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>27</td>
+      <td>Mabie, Hamilton Wright, 1846-1916</td>
+      <td>/ebooks/19645</td>
+      <td>Under the Trees and Elsewhere</td>
+      <td>data\19645.txt</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</aside></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>5 first lines of book 0:</p>
+<ul>
+<li>Dahn, Felix, 1834-1912</li>
+<li>/ebooks/32220</li>
+<li>"A Captive of the Roman Eagles"</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;lab_1/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;book_file&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">][:</span><span class="mi">5</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&#34;I was the first on deck, flung, the first brand into the main sail, and swung the Italian lord overboard like a lake salmon out of an ice-hole.
+--------------------------------------------------
+But we, Adalo, shall then look down upon the free land of the Alemanni, stretching from the Alps to the Vosges.
+--------------------------------------------------
+Skins covered the turf floor which, opposite to the entrance, was raised until it formed a high seat; a curtain of heavy linen hung behind it, dividing from the front of the tent a small space used for a sleeping room.
+--------------------------------------------------
+The Illyrian turned toward him with a threatening bearing, saying in a stern, grave tone: &#34;Who tells you so?&#34;
+--------------------------------------------------
+Davus carried the last cup to the Illyrian and set the silver salver on the table.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lab-2">Lab 2<a class="anchor-link" href="#Lab-2">&#182;</a></h1><h2 id="Parts-covered-and-choices">Parts covered and choices<a class="anchor-link" href="#Parts-covered-and-choices">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-1">Exercise 1<a class="anchor-link" href="#Exercise-1">&#182;</a></h1><p>Processing of the text files from the previous lab session:</p>
+<ul>
+<li>remove the punctuation;</li>
+<li>get the tokens, the POS and the named entities via Spacy;</li>
+<li>run Stanford syntactic parser to get the parse tree.</li>
+</ul>
+<p>The sentences and the additional data of the features, such as the POS of the tokens <code>{sentence_ID: [token_POS, ...]}</code>,  are stored in corresponding JSON files, <code>&lt;book&gt;.pos.json</code>, named after the Gutenberg identifier of the book they come from.</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-2">Exercise 2<a class="anchor-link" href="#Exercise-2">&#182;</a></h1><p>From the processed data of exercise_1.py, computation of descriptive statistics:</p>
+<ul>
+<li>the vocabulary size (unique token count) per author;</li>
+<li>the POS distribution per author;</li>
+<li>the mean, max and average number of sentence size (token count), NP and VP per author;</li>
+<li>the 10 most frequent named entity per named entity category per author.</li>
+</ul>
+<p>The generated statistics are not stored but printed.</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-3">Exercise 3<a class="anchor-link" href="#Exercise-3">&#182;</a></h1><p>The visualizations generated are:</p>
+<ul>
+<li>a bar plot for the vocabulary size per author;</li>
+<li>a box plot for the sentence size per author;</li>
+<li>a bar plot for the POS distribution per author;</li>
+<li>a word cloud based on the vocabulary per author, based on the vocabulary of the author.</li>
+</ul>
+<p>The bar plots and box plot are stored each in a file named after what they represent.</p>
+<p>The word clouds are stored in numbered files, with the author name written at the image.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lab-2">Lab 2<a class="anchor-link" href="#Lab-2">&#182;</a></h1><h2 id="Run-and-Results">Run and Results<a class="anchor-link" href="#Run-and-Results">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-1-JSON-output">Exercise 1 JSON output<a class="anchor-link" href="#Exercise-1-JSON-output">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pp</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">json_ner</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;0&#39;: [],
+ &#39;1&#39;: [[&#39;Adalo&#39;, &#39;GPE&#39;],
+       [&#39;Alemanni&#39;, &#39;ORG&#39;],
+       [&#39;Alps&#39;, &#39;LOC&#39;],
+       [&#39;Vosges&#39;, &#39;LOC&#39;]],
+ &#39;10&#39;: [],
+ &#39;11&#39;: [],
+ &#39;12&#39;: [],
+ &#39;13&#39;: [],
+ &#39;14&#39;: [],
+ &#39;15&#39;: [],
+ &#39;16&#39;: [[&#39;Bissula&#39;, &#39;ORG&#39;]],
+ &#39;17&#39;: [[&#39;Ausonius&#39;, &#39;PERSON&#39;], [&#39;Butthank&#39;, &#39;ORG&#39;]],
+ &#39;18&#39;: [[&#39;Tribune&#39;, &#39;ORG&#39;], [&#39;Ausonius&#39;, &#39;PERSON&#39;]],
+ &#39;19&#39;: [[&#39;thirty years&#39;, &#39;DATE&#39;], [&#39;Project Gutenbergtm eBooks&#39;, &#39;ORG&#39;]],
+ &#39;2&#39;: [],
+ &#39;20&#39;: [],
+ &#39;21&#39;: [],
+ &#39;22&#39;: [],
+ &#39;23&#39;: [[&#39;August day&#39;, &#39;DATE&#39;]],
+ &#39;24&#39;: [],
+ &#39;25&#39;: [],
+ &#39;26&#39;: [],
+ &#39;27&#39;: [],
+ &#39;3&#39;: [],
+ &#39;4&#39;: [[&#39;Davus&#39;, &#39;ORG&#39;]],
+ &#39;5&#39;: [],
+ &#39;6&#39;: [[&#39;Bissula&#39;, &#39;ORG&#39;]],
+ &#39;7&#39;: [],
+ &#39;8&#39;: [],
+ &#39;9&#39;: []}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-2-console-output">Exercise 2 console output<a class="anchor-link" href="#Exercise-2-console-output">&#182;</a></h2><p><img src="lab_2-exe_2-screenshot.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-3-images">Exercise 3 images<a class="anchor-link" href="#Exercise-3-images">&#182;</a></h1><h2 id="lab_2/imgs/pos.png">lab_2/imgs/pos.png<a class="anchor-link" href="#lab_2/imgs/pos.png">&#182;</a></h2><p><img src="lab_2/imgs/pos.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_2/imgs/voc_size.png">lab_2/imgs/voc_size.png<a class="anchor-link" href="#lab_2/imgs/voc_size.png">&#182;</a></h2><p><img src="lab_2/imgs/voc_size.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_2/imgs/box.png">lab_2/imgs/box.png<a class="anchor-link" href="#lab_2/imgs/box.png">&#182;</a></h2><p><img src="lab_2/imgs/box.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_2/imgs/00.png">lab_2/imgs/00.png<a class="anchor-link" href="#lab_2/imgs/00.png">&#182;</a></h2><p><img src="lab_2/imgs/00.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lab-3">Lab 3<a class="anchor-link" href="#Lab-3">&#182;</a></h1><h2 id="Parts-covered-and-choices">Parts covered and choices<a class="anchor-link" href="#Parts-covered-and-choices">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-1">Exercise 1<a class="anchor-link" href="#Exercise-1">&#182;</a></h1><h2 id="Pre-processing-and-storage-of-different-features">Pre-processing and storage of different features<a class="anchor-link" href="#Pre-processing-and-storage-of-different-features">&#182;</a></h2><p>The data is packed into instances and split into a training and a test set (80:20) , 
+and processed to obtain the following features:</p>
+<ul>
+<li>token TF-IDF-normalized frequencies;</li>
+<li>named entity TF-IDF-normalized frequencies;</li>
+<li>POS-filtered tokens TF-IDF-normalized frequencies;</li>
+<li>average VP number per sentence;</li>
+<li>average token number per sentence.</li>
+</ul>
+<p>All the features and the corresponding target are saved in SVMLight format to two files : <code>train.pos_token_tf_idf.svmlight</code> and <code>test.pos_token_tf_idf.svmlight</code>.
+Besides, the authors are prepared as targets, and a mapping of the authors to numbers is done, also the mapping is saved to CSV, <code>target_to_author.csv</code>.</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-2">Exercise 2<a class="anchor-link" href="#Exercise-2">&#182;</a></h1><h2 id="Training-and-optimisation-of-machine-learning-models">Training and optimisation of machine learning models<a class="anchor-link" href="#Training-and-optimisation-of-machine-learning-models">&#182;</a></h2><p>The features produced  in exercise 1 are used to train two classifier : MultinomialNB and  LogisticRegression,  via GridSearchCV. Two optimisation scores: <code>precision_macro</code> and <code>recall_macro</code> were used.</p>
+<p>In each of the training setups (a feature, a model, and an optimisation score), the best model is evaluated.<br>
+Each of the best models found by GridSearchCV is tested, and the performance is printed in the console.</p>
+<p>Finally, to visualize the performance, a set of bar plots is generated for each feature, and stored into <code>imgs\&lt;feature&gt;.png</code>, where the file name for the feature is the same as the one from exercise 1.</p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise-3">Exercise 3<a class="anchor-link" href="#Exercise-3">&#182;</a></h1><h2 id="Clustering">Clustering<a class="anchor-link" href="#Clustering">&#182;</a></h2><p><strong>We did not do the bonus exercise on clustering</strong>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Lab-3">Lab 3<a class="anchor-link" href="#Lab-3">&#182;</a></h1><h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_3\imgs\ne_tf_idf.png">lab_3\imgs\ne_tf_idf.png<a class="anchor-link" href="#lab_3\imgs\ne_tf_idf.png">&#182;</a></h2><p><img src="lab_3\imgs\ne_tf_idf.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_3\imgs\pos_token_tf_idf.png">lab_3\imgs\pos_token_tf_idf.png<a class="anchor-link" href="#lab_3\imgs\pos_token_tf_idf.png">&#182;</a></h2><p><img src="lab_3\imgs\pos_token_tf_idf.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_3\imgs\token_count_mean.png">lab_3\imgs\token_count_mean.png<a class="anchor-link" href="#lab_3\imgs\token_count_mean.png">&#182;</a></h2><p><img src="lab_3\imgs\token_count_mean.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_3\imgs\token_tf_idf.png">lab_3\imgs\token_tf_idf.png<a class="anchor-link" href="#lab_3\imgs\token_tf_idf.png">&#182;</a></h2><p><img src="lab_3\imgs\token_tf_idf.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_3\imgs\vp_count_mean.png">lab_3\imgs\vp_count_mean.png<a class="anchor-link" href="#lab_3\imgs\vp_count_mean.png">&#182;</a></h2><p><img src="lab_3\imgs\vp_count_mean.png" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="lab_3\imgs\all.png">lab_3\imgs\all.png<a class="anchor-link" href="#lab_3\imgs\all.png">&#182;</a></h2><p><img src="lab_3\imgs\all.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Interesting-code-fragment">Interesting code fragment<a class="anchor-link" href="#Interesting-code-fragment">&#182;</a></h1>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Dict of classifier and its corresponding tuning parameters</span>
+<span class="n">CLF_PARA_DICT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">MultinomialNB</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> 
+                    <span class="s1">&#39;fit_prior&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]}</span> <span class="p">,</span> 
+    <span class="n">LogisticRegression</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]}}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Thank-you-for-your-attention-!">Thank you for your attention !<a class="anchor-link" href="#Thank-you-for-your-attention-!">&#182;</a></h1><h2 id="Questions-?">Questions ?<a class="anchor-link" href="#Questions-?">&#182;</a></h2>
 </div>
 </div>
 </div></section></section>
