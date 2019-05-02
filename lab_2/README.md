@@ -35,7 +35,7 @@ The code of exercise 1 is separate form the code of exercise 2 and 3 (see [Files
 The first exercise correspond to the processing of the text files from the previous lab session.
 
 The exercise consist on loading the sentences and removing the punctuation as a preliminary step.
-Then, Scipy is used to get the tokens, their POS and the named entities, and to run Stanford syntactic parser to get the parse tree.
+Then, Spacy is used to get the tokens, their POS and the named entities, and to run Stanford syntactic parser to get the parse tree.
 
 The sentences and the additional data are stored in JSON files named after the Gutenberg identifier of the book they come from.
 
@@ -141,7 +141,7 @@ This program load data generated from the [Gutenberg project](http://www.gutenbe
 
 The sentences are cleaned of their punctuation using the `string` package.
 
-The sentences are then parsed by Scipy and Stanford Syntactic Parser (from Stanford Parser or Stanford CoreNLP, depending on your instalation and the value of `CORENLP_MODE`, see [Stanford Parser or Stanford CoreNLP](#stanford-parser-or-stanford-corenlp) for more information).
+The sentences are then parsed by Spacy and Stanford Syntactic Parser (from Stanford Parser or Stanford CoreNLP, depending on your instalation and the value of `CORENLP_MODE`, see [Stanford Parser or Stanford CoreNLP](#stanford-parser-or-stanford-corenlp) for more information).
 
 A set of features are extracted and stored into corresponding files, one of each per book:
 - the sentences of the book, in a dictionary of `{sentence_ID: sentence_text}`, saved in `<book>.sentence.json`;
@@ -181,10 +181,10 @@ Note that the constants from an exercise may be used in a later exercise.
 | Constant | Exercise file | Line | Effect |
 |-|-|-|-|
 |VERBOSE| `exercise_2_3.py` | 23 | If `True`, will make the program describe what is going on during execution. |
-|LANGUAGE| `exercise_1.py` | 18 | Language of the Scipy language model. Must be a language present in the table in [Spacy models and available languages](#spacy-models-and-available-languages). |
+|LANGUAGE| `exercise_1.py` | 18 | Language of the Spacy language model. Must be a language present in the table in [Spacy models and available languages](#spacy-models-and-available-languages). |
 |SAVE_PATH| `exercise_1.py` | 22 |  Name of the folder in which the JSON files will be stored. |
 |TASK_FILENAME_SCHEME| `exercise_1.py` | 30 | Structure of the names of the JSON files. The slots `{prefix}` and `{task}` will be replaced respectively by the book identifier and the parsing task to which the file correspond. |
-|NER_ACCEPTED_LABELS| `exercise_1.py` | 31 | List of the Scipy named entity tags kept in the named entity parsing task. |
+|NER_ACCEPTED_LABELS| `exercise_1.py` | 31 | List of the Spacy named entity tags kept in the named entity parsing task. |
 |TASK_SENTENCE| `exercise_1.py` | 32 | Name of the sentence parsing task. Used as a key to designate the task in multiple dictionaries, including `TASK_FILES`. |
 |TASK_TOKENIZE| `exercise_1.py` | 33 | Name of the tokenisation task. Used as a key to designate the task in multiple dictionaries, including `TASK_FILES`. |
 |TASK_NER| `exercise_1.py` | 34 | Name of the named entity recognition task. Used as a key to designate the task in multiple dictionaries, including `TASK_FILES`. |

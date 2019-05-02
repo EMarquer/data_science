@@ -36,7 +36,7 @@ The first exercise correspond to the extraction of a list of authors and a set o
 A distribution of `k` authors are selected from the the [Gutenberg project](http://www.gutenberg.org/) author search, according to the first letter of their family name. The distribution of authors among the letters is random.
 For each letter, the first authors fulfilling the [author selection criterion](#author-selection-criterion) are selected.
 
-Once the authors and the corresponding books are selected, `n` sentences are chosen per author among the books. The distribution of the sentences among the books of an author is either random (the default behaviour) or balanced (about the same number of sentence per book). The senteces are chosen randomly in each book among the sentences parsed by the Scipy language model.
+Once the authors and the corresponding books are selected, `n` sentences are chosen per author among the books. The distribution of the sentences among the books of an author is either random (the default behaviour) or balanced (about the same number of sentence per book). The senteces are chosen randomly in each book among the sentences parsed by the Spacy language model.
 
 The selected sentences are stored in TXT files named after the Gutenberg identifier of the book they come from, one sentence per line.
 An extra CSV file contains the catalogue of books used, the file where the extracted sentences are stored and the name of the author of the book.

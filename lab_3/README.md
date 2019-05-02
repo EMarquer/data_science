@@ -122,7 +122,7 @@ Note that the constants from an exercise may be used in a later exercise.
 |VERBOSE| `exercise_2.py` | 11 | If `True`, will make the program describe what is going on during execution. |
 |INSTANCES_PER_AUTHOR| `exercise_1.py` | 27 | The maximum number of instances to create for each author. |
 |SENTENCES_PER_INSTANCE| `exercise_1.py` | 28 | The number of sentence to pack in each instance. |
-|ACCEPTED_POS| `exercise_1.py` | 31 | List of the Scipy POS tags for the POS-filtered feature. |
+|ACCEPTED_POS| `exercise_1.py` | 31 | List of the Spacy POS tags for the POS-filtered feature. |
 |TRAIN_RATIO| `exercise_1.py` | 34 | Proportion of the data to use as training set, the rest is used for the test set. |
 |DATAFRAME_*| `exercise_1.py` | 38 | Name of the columns in the DataFrame used to store the information on each instance. Also used as keys in some dictionaries like `TF_IDF_FEATURES`. |
 |TF_IDF_FEATURES| `exercise_1.py` | 50 | Maping of the features using TF-IDF normalization to the column containing the data used to compute them. |
