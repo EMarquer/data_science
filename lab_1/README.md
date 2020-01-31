@@ -71,6 +71,7 @@ To use the project, you will need a valid `Python 3.7.1` installation as well as
 
 ### Built-in Python dependencies
 The project relies on the following `Python 3.7.1` built-in libraries:
+
 | Library       |
 |---------------|
 | re            |
@@ -81,6 +82,7 @@ The project relies on the following `Python 3.7.1` built-in libraries:
 
 ### External dependencies
 The project uses the following python libraries:
+
 | Library       | Version   |
 |---------------|-----------|
 | urllib3       | 1.24.1    |
@@ -98,6 +100,7 @@ You can get it by executing `python -m spacy download en` in your terminal.
 If you wish to use a different language, you need to download the corresponding model by running `python -m spacy download <lang>` (where `<lang>` is the language key of the language you wish to use).
 
 The available languages are:
+
 |Language   |Language key|
 |-----------|----|
 |German     |`de`|
